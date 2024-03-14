@@ -50,10 +50,10 @@ class TemplateConfigParser implements TemplateConfigParserInterface
     protected function createFootprintOptionTransfers(array $templateConfigData): array
     {
         $footprintOptionTransfers = [];
-        foreach ($templateConfigData as $templateConfigDataItem) {
+        foreach ($templateConfigData as $templateOptionName => $templateOptionData) {
             $footprintOptionTransfers[] = (new FootprintOptionTransfer())
-                ->setName(key($templateConfigDataItem))
-                ->setLabel(current($templateConfigDataItem));
+                ->setName($templateOptionName)
+                ->setLabel($templateOptionData['label']);
         }
 
         return $footprintOptionTransfers;

@@ -7,6 +7,11 @@ use Generated\Shared\Transfer\FootprintTemplateTransfer;
 
 interface FootprintProcessorInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\FootprintTemplateTransfer $footprintTemplateTransfer
+     *
+     * @return \Generated\Shared\Transfer\FootprintProcessorResultTransfer
+     */
     public function makeFromFootprint(
         FootprintTemplateTransfer $footprintTemplateTransfer
     ): FootprintProcessorResultTransfer;
