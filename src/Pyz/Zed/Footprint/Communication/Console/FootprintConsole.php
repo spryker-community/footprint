@@ -74,9 +74,8 @@ class FootprintConsole extends Console
             ->parseConfig($templateName);
 
         foreach ($optionTransfers as $optionTransfer) {
-            $isApplicable = $this->ask(
-                $optionTransfer->getLabel(),
-                true
+            $isApplicable = $this->askConfirmation(
+                $optionTransfer->getLabel()
             );
 
             $optionTransfer->setIsApplicable((bool)$isApplicable);
