@@ -10,6 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * @method \Pyz\Zed\Footprint\Business\FootprintFacadeInterface getFacade()
+ * @method \Pyz\Zed\Footprint\Communication\FootprintCommunicationFactory getFactory()
  */
 class FootprintConsole extends Console
 {
@@ -17,10 +18,13 @@ class FootprintConsole extends Console
 
     public const DESCRIPTION = 'Generates module by footprint template';
 
-    public const ARGUMENT_NAME_MODULE = 'module';
+    public const ARGUMENT_MODULE = 'module';
 
-    public const ARGUMENT_NAME_TEMPLATE = 'template';
+    public const ARGUMENT_TEMPLATE = 'template';
 
+    protected const SUCCESS_MESSAGE = 'New module has been created based.';
+
+    protected const ERROR_MESSAGE = 'Cannot create module.';
 
     /**
      * @return void
@@ -29,17 +33,55 @@ class FootprintConsole extends Console
     {
         $this->setName(static::COMMAND_NAME);
         $this->setDescription(static::DESCRIPTION);
-        $this->addArgument(static::ARGUMENT_NAME_MODULE, InputArgument::REQUIRED, 'Module to generate based on template');
-        $this->addArgument(static::ARGUMENT_NAME_TEMPLATE, InputArgument::REQUIRED, 'Template base of which module is generated');
+        $this->addArgument(static::ARGUMENT_TEMPLATE, InputArgument::REQUIRED, 'Template base of which module is generated');
+        $this->addArgument(static::ARGUMENT_MODULE, InputArgument::REQUIRED, 'Module name to generate based on template');
 
         parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $templateTransfer = new FootprintTemplateTransfer();
+        $templateTransfer = $this->createFootprintTemplateTransfer($input, $output);
         $resultTransfer = $this->getFacade()->makeFromFootprint($templateTransfer);
 
-        return $resultTransfer->getIsSuccessful() ? static::CODE_SUCCESS : static::CODE_ERROR;
+        if (!$resultTransfer->getIsSuccessful()) {
+            $errorMessage = $resultTransfer->getErrorMessage() ?: static::ERROR_MESSAGE;
+            $this->error($errorMessage);
+
+            return static::CODE_ERROR;
+        }
+
+        $this->success(static::SUCCESS_MESSAGE);
+
+        return static::CODE_SUCCESS;
+    }
+
+    protected function createFootprintTemplateTransfer(
+        InputInterface $input,
+        OutputInterface $output
+    ): FootprintTemplateTransfer {
+        $templateName = $input->getArgument(static::ARGUMENT_TEMPLATE);
+        $moduleName = $input->getArgument(static::ARGUMENT_MODULE);
+
+        $templateTransfer = (new FootprintTemplateTransfer())
+            ->setTemplateName($templateName)
+            ->setModuleName($moduleName);
+
+        $optionTransfers = $this->getFactory()
+            ->createTemplateConfigParser()
+            ->parseConfig($templateName);
+
+        foreach ($optionTransfers as $optionTransfer) {
+            $isApplicable = $this->ask(
+                $optionTransfer->getLabel(),
+                true
+            );
+
+            $optionTransfer->setIsApplicable((bool)$isApplicable);
+
+            $templateTransfer->addOption($optionTransfer);
+        }
+
+        return $templateTransfer;
     }
 }

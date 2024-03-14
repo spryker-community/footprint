@@ -14,6 +14,7 @@
 
     <transfer name="FootprintOption">
         <property name="name" type="string"/>
+        <property name="label" type="string"/>
         <property name="isApplicable" type="bool"/>
     </transfer>
 

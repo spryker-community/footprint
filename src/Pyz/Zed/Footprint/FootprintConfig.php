@@ -6,7 +6,7 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 
 class FootprintConfig extends AbstractBundleConfig
 {
-    protected const FOOTPRINT_TEMPLATE_PATH = APPLICATION_ROOT_DIR . 'templates';
+    protected const FOOTPRINT_TEMPLATE_PATH = APPLICATION_ROOT_DIR . '/templates';
 
     protected const FOOTPRINT_CONFIG_NAME = 'config.yaml';
 
