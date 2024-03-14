@@ -1,4 +1,4 @@
-# Footprints
+# Footprint
 
 
 Spryker module that generate code base on the existing module footprint template.
