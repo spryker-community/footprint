@@ -24,7 +24,7 @@ class FootprintProcessor implements FootprintProcessorInterface
             $directoryPath = dirname($path->getTarget());
 
             if (!is_dir($directoryPath)) {
-                mkdir($directoryPath);
+                mkdir($directoryPath, 0777, true);
             }
 
             file_put_contents($path->getTarget(), $renderedTemplate);
