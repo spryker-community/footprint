@@ -24,9 +24,9 @@ class FootprintConsole extends Console
 
     public const ARGUMENT_TEMPLATE = 'template';
 
-    protected const SUCCESS_MESSAGE = 'New module has been created based.';
+    protected const SUCCESS_MESSAGE = 'New module has been created based on footprint.';
 
-    protected const ERROR_MESSAGE = 'Cannot create module.';
+    protected const ERROR_MESSAGE = 'Cannot create module by footprint.';
 
     /**
      * @return void

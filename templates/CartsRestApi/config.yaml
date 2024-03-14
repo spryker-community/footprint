@@ -1,0 +1,10 @@
+_should_have_get:
+    label: "Would you like to have get method?"
+_should_have_post:
+    label: "Would you like to have post method?"
+_should_have_delete:
+    label: "Would you like to have delete method?"
+_should_have_patch:
+    label: "Would you like to have patch method?"
+_should_have_validation:
+    label: "Would you like to have validation?"
