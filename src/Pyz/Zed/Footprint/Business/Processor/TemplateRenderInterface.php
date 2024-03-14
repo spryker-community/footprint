@@ -9,6 +9,6 @@ interface TemplateRenderInterface
 {
     public function renderTemplate(
         FootprintTemplateTransfer $footprintTemplateTransfer,
-        FootprintTemplatePathTransfer $footprintTemplatePathTransfer
+        FootprintTemplatePathTransfer $footprintTemplatePathTransfer,
     ): string;
 }

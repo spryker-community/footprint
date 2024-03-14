@@ -5,8 +5,7 @@
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
-
-namespace ExampleGlueApiConfig\_choice1\_false;
+namespace Pyz\Glue\ExampleGlueApi;
 
 use Spryker\Glue\CartsRestApi\CartsRestApiConfig as SprykerCartsRestApiConfig;
 

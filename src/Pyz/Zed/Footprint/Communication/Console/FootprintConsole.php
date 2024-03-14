@@ -2,7 +2,9 @@
 
 namespace Pyz\Zed\Footprint\Communication\Console;
 
+use Generated\Shared\Transfer\FootprintTemplatePathTransfer;
 use Generated\Shared\Transfer\FootprintTemplateTransfer;
+use Pyz\Zed\Footprint\Business\Processor\TemplateRenderer;
 use Spryker\Zed\Kernel\Communication\Console\Console;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
