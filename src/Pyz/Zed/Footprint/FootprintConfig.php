@@ -8,11 +8,18 @@ class FootprintConfig extends AbstractBundleConfig
 {
     protected const FOOTPRINT_TEMPLATE_PATH = APPLICATION_ROOT_DIR . '/templates';
 
+    protected const FOOTPRINT_NAMESPACE_DIRECTORY_PATH = APPLICATION_ROOT_DIR . '/src/Pyz';
+
     protected const FOOTPRINT_CONFIG_NAME = 'config.yaml';
 
     public function getFootprintTemplatePath() :string
     {
         return static::FOOTPRINT_TEMPLATE_PATH;
+    }
+
+    public function getFootprintNamespaceDirectoryPath() :string
+    {
+        return static::FOOTPRINT_NAMESPACE_DIRECTORY_PATH;
     }
 
     public function getFootprintConfigName() :string

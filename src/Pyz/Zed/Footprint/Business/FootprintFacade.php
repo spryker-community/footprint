@@ -11,6 +11,11 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
  */
 class FootprintFacade extends AbstractFacade implements FootprintFacadeInterface
 {
+    /**
+     * @param \Generated\Shared\Transfer\FootprintTemplateTransfer $footprintTemplateTransfer
+     *
+     * @return \Generated\Shared\Transfer\FootprintProcessorResultTransfer
+     */
     public function makeFromFootprint(FootprintTemplateTransfer $footprintTemplateTransfer): FootprintProcessorResultTransfer
     {
         return $this->getFactory()
