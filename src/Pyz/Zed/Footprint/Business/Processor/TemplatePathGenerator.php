@@ -70,21 +70,32 @@ class TemplatePathGenerator implements TemplatePathGeneratorInterface
         ArrayObject $footprintTemplateOptions,
         string $templateName,
     ): string {
+        $targetPath = '';
+
+        if(str_contains($path, "config.yaml") )
+        {
+            return "";
+        }
         foreach ($footprintTemplateOptions as $footprintOption) {
+            $isTargetPathEffectedByOptions = false;
             if (str_contains($path, $footprintOption->getName())) {
+                $isTargetPathEffectedByOptions = true;
                 if ($footprintOption->getIsApplicable()) {
                     $targetPath = str_replace(
                         DIRECTORY_SEPARATOR . $footprintOption->getName() . DIRECTORY_SEPARATOR,
                         DIRECTORY_SEPARATOR,
                         $path,
                     );
-
-                    return $this->replaceDirectoryInTargetPath($targetPath, $templateName);
+                    $targetPath = $this->replaceDirectoryInTargetPath($targetPath, $templateName);
                 }
             }
         }
+        if(!$isTargetPathEffectedByOptions)
+        {
+            return $this->replaceDirectoryInTargetPath($path, $templateName);
+        }
 
-        return '';
+        return $targetPath;
     }
 
     /**
@@ -110,8 +121,6 @@ class TemplatePathGenerator implements TemplatePathGeneratorInterface
         $paths = [];
         if (is_dir($dir) && is_readable($dir)) {
             $files = scandir($dir);
-
-            // Remove special entries (".", "..")
             unset($files[0], $files[1]);
 
             foreach ($files as $file) {
