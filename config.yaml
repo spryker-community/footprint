@@ -1,0 +1,31 @@
+_option_1:
+    prompt : "Do you want to have this in module?"
+
+
+#    console footprint:make Example
+#    What would you like to name the module? Example
+#    Do you want to have this in module? Yes
+#    ...
+#    done.
+
+# todo 1 (fast truck)
+# Console command that read config and get answers passing them to facade
+# Create facade
+# - find template directory by options
+# - copy files with new folder and change file, class names with namespaces
+# -
+# todo 2 (continue truck)
+
+
+
+# Tasks?
+# Register a console command
+# Create processors
+# - TemplateProcessorModelCreator:
+#   Reads the template directory, and create the array containing which directories to paste where e.g.
+#   ['newName'] => directory : 'Pyz/Glue/NewRestApi', 'option_1'
+# - TemplateProcessor
+#   Make files according to the processor model
+
+
+
