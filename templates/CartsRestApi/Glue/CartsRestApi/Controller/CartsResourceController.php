@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Glue\CartsRestApi\Controller;
+namespace Pyz\Glue\CartsRestApi\Controller;
 
 use Generated\Shared\Transfer\RestCartsAttributesTransfer;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponse;

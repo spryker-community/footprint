@@ -13,15 +13,11 @@ use PhpParser\ParserFactory;
 
 class TemplateRenderer implements TemplateRenderInterface
 {
-    const TEMPLATE_MODULE_NAME = 'Example';
-
     public function renderTemplate(
         FootprintTemplateTransfer $footprintTemplateTransfer,
         FootprintTemplatePathTransfer $footprintTemplatePathTransfer,
     ): string {
         $originPath = $footprintTemplatePathTransfer->getOrigin();
-
-        var_dump($originPath);
 
         $templateContents = file_get_contents($originPath);
 
@@ -33,7 +29,11 @@ class TemplateRenderer implements TemplateRenderInterface
             return $templateContents;
         }
 
-        $templateContents = str_replace(self::TEMPLATE_MODULE_NAME, $footprintTemplateTransfer->getModuleName(), $templateContents);
+        $templateContents = str_replace(
+            $footprintTemplateTransfer->getTemplateName(),
+            $footprintTemplateTransfer->getModuleName(),
+            $templateContents
+        );
 
         $file = PhpFile::fromCode($templateContents);
 

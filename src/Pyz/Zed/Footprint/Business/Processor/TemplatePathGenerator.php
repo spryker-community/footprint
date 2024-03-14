@@ -49,6 +49,12 @@ class TemplatePathGenerator implements TemplatePathGeneratorInterface
                 continue;
             }
 
+            $targetFilePath = str_replace(
+                $footprintTemplateTransfer->getTemplateName(),
+                $footprintTemplateTransfer->getModuleName(),
+                $targetFilePath,
+            );
+
             $footprintTemplatePathTransfer->setOrigin($path);
             $footprintTemplatePathTransfer->setTarget($targetFilePath);
 

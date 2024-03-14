@@ -5,12 +5,12 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Glue\CartsRestApi;
+namespace Pyz\Glue\CartsRestApi;
 
 use Spryker\Glue\Kernel\AbstractRestResource;
 
 /**
- * @method \Spryker\Glue\CartsRestApi\CartsRestApiFactory getFactory()
+ * @method \Pyz\Glue\CartsRestApi\CartsRestApiFactory getFactory()
  */
 class CartsRestApiResource extends AbstractRestResource implements CartsRestApiResourceInterface
 {
