@@ -2,7 +2,9 @@
 
 namespace Pyz\Zed\Footprint\Communication\Console;
 
+use Generated\Shared\Transfer\FootprintTemplatePathTransfer;
 use Generated\Shared\Transfer\FootprintTemplateTransfer;
+use Pyz\Zed\Footprint\Business\Processor\TemplateRenderer;
 use Spryker\Zed\Kernel\Communication\Console\Console;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,6 +39,20 @@ class FootprintConsole extends Console
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+//        $templatePathTransfer = new FootprintTemplatePathTransfer();
+//        $templatePathTransfer->setOrigin(APPLICATION_ROOT_DIR . '/templates/Example/Glue/ExampleGlueApi/_default/ExampleRestApiConfig.php');
+//
+//        $templateTransfer = new FootprintTemplateTransfer();
+//        $templateTransfer->setTemplateName($input->getArgument(static::ARGUMENT_NAME_TEMPLATE));
+//        $templateTransfer->setModuleName($input->getArgument(static::ARGUMENT_NAME_TEMPLATE));
+//
+//        $templateRenderer = new TemplateRenderer();
+//        $template = $templateRenderer->renderTemplate($templateTransfer, $templatePathTransfer);
+//
+//        var_dump($template);
+//
+//        return 0;
+
         $templateTransfer = new FootprintTemplateTransfer();
         $resultTransfer = $this->getFacade()->makeFromFootprint($templateTransfer);
 

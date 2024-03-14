@@ -13,7 +13,8 @@ class FootprintFacade extends AbstractFacade implements FootprintFacadeInterface
 {
     public function makeFromFootprint(FootprintTemplateTransfer $footprintTemplateTransfer): FootprintProcessorResultTransfer
     {
-        // TODO: Implement makeFromFootprint() method.
-        return (new FootprintProcessorResultTransfer())->setIsSuccessful(true);
+        return $this->getFactory()
+            ->createFootprintProcessor()
+            ->makeFromFootprint($footprintTemplateTransfer);
     }
 }
